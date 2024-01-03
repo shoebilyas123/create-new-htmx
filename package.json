@@ -15,7 +15,7 @@
     "release": "pnpm publish --access public"
   },
   "bin": {
-    "create-new-htmx": "pnpm start"
+    "create-new-htmx": "./dist/index.js"
   },
   "keywords": [
     "htmx",
