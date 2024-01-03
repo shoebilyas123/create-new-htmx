@@ -2,6 +2,7 @@ import path from 'path';
 import * as fs from 'fs';
 import install, { PackageManager } from './install';
 import { _technologyChoices } from './constants';
+import spawn from 'cross-spawn';
 
 interface GenerateHTMXTemplateParams {
   projectName: string;
@@ -19,7 +20,16 @@ export const generateJavascriptHTMXTemplate = async ({
 
   const templateDir = path.resolve(__dirname, `templates/${technology}`);
 
-  fs.mkdirSync(projectDir);
+  console.log('Creating the directory...');
+  try {
+    fs.mkdirSync(projectDir);
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+  console.log('Initializing empty git repository in the project directory');
+  spawn.sync('git', ['init'], { cwd: projectDir, stdio: 'inherit' });
+
   fs.cpSync(templateDir, projectDir, { recursive: true });
 
   fs.renameSync(
@@ -35,5 +45,7 @@ export const generateJavascriptHTMXTemplate = async ({
     JSON.stringify(projectPackageJson, null, 2)
   );
 
+  console.log('Installing dependencies...');
   install(pkgManager, projectDir);
+  console.log('Dependencies installed!');
 };

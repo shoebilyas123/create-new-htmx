@@ -1,6 +1,9 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import path from 'path';
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const pug = require('pug');
+
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -14,6 +17,13 @@ app.get('/', (req, res) => {
   res.render('index', {
     title: 'Hello World! Welcome to HTMX!',
   });
+});
+app.post('/click-me', (req, res) => {
+  const clickedMarkup = pug.compileFile(
+    path.join(__dirname, 'views/includes/clicked-label.pug')
+  )();
+
+  res.send(clickedMarkup);
 });
 
 const PORT = process.env.PORT || 3000;
