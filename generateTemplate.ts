@@ -51,4 +51,5 @@ export const generateJavascriptHTMXTemplate = async ({
   install(pkgManager, projectDir);
   console.log('\n\n\n');
   console.log('HTMX project installed :)');
+  process.exit(0);
 };
