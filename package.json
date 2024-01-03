@@ -7,7 +7,8 @@
     "clean": "rm -rf dist && mkdir dist",
     "build": "pnpm run clean && tsc &&  cp -r templates ./dist",
     "dev": "ts-node-dev index.ts",
-    "start": "node ./dist/index.js"
+    "start": "node ./dist/index.js",
+    "release": "pnpm publish --access public"
   },
   "bin": {
     "create-new-htmx": "pnpm start"
