@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "",
   "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shoebilyas123/create-new-htmx.git"
+  },
   "scripts": {
     "clean": "rm -rf dist && mkdir dist",
     "build": "pnpm run clean && tsc &&  cp -r templates ./dist",
@@ -13,7 +17,10 @@
   "bin": {
     "create-new-htmx": "pnpm start"
   },
-  "keywords": [],
+  "keywords": [
+    "htmx",
+    "html"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
