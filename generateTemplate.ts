@@ -27,7 +27,9 @@ export const generateJavascriptHTMXTemplate = async ({
     console.log(err);
     process.exit(1);
   }
-  console.log('Initializing empty git repository in the project directory');
+  console.log(
+    '\n\n\nInitializing empty git repository in the project directory'
+  );
   spawn.sync('git', ['init'], { cwd: projectDir, stdio: 'inherit' });
 
   fs.cpSync(templateDir, projectDir, { recursive: true });
@@ -45,7 +47,8 @@ export const generateJavascriptHTMXTemplate = async ({
     JSON.stringify(projectPackageJson, null, 2)
   );
 
-  console.log('Installing dependencies...');
+  console.log('\n\n\nInstalling dependencies...');
   install(pkgManager, projectDir);
-  console.log('Dependencies installed!');
+  console.log('\n\n\n');
+  console.log('HTMX project installed :)');
 };
